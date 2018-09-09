@@ -2,10 +2,11 @@ package com.example.demo.dao;
 
 import com.example.demo.model.UserEntity;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Mapper
-public interface UserDao {
-    List<UserEntity> searchAll();
+@Repository
+public interface IUserDao {
+    public List<UserEntity> selectAll();
 }

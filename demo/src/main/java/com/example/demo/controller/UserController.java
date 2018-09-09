@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.example.demo.dao.UserDao;
+import com.example.demo.services.IUserService;
 import com.example.demo.model.UserEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,11 +12,11 @@ import java.util.List;
 @Controller
 public class UserController {
     @Resource
-    UserDao userDao;
+    IUserService userDao;
 
     @RequestMapping("/users")
     public String users(){
-        List<UserEntity> users = userDao.searchAll();
+        List<UserEntity> users = userDao.selectAll();
         String usersJson = JSON.toJSONString(users);
         return usersJson;
     }
