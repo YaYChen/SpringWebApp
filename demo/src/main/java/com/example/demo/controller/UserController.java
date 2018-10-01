@@ -1,22 +1,27 @@
 package com.example.demo.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.example.demo.services.IUserService;
-import com.example.demo.model.UserEntity;
-import org.springframework.stereotype.Controller;
+import com.example.demo.entity.User;
+import com.example.demo.mapper.UserMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import java.util.List;
 
-@Controller
+@RestController
 public class UserController {
-    @Resource
-    IUserService userDao;
+
+    private UserMapper userMapper;
+
+    @Autowired
+    public UserController(UserMapper userMapper){
+        this.userMapper=userMapper;
+    }
 
     @RequestMapping("/users")
     public String users(){
-        List<UserEntity> users = userDao.selectAll();
+        List<User> users = userMapper.selectAll();
         String usersJson = JSON.toJSONString(users);
         return usersJson;
     }

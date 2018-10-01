@@ -1,15 +1,24 @@
-package com.example.demo.model;
+package com.example.demo.entity;
 
-public class UserEntity {
-    private int id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+public class User {
+    private Integer id;
+
+    @NotNull
+    @Size(min=8,max=16)
     private String username;
+
+    @NotNull
+    @Size(min=8,max=16)
     private String password;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
