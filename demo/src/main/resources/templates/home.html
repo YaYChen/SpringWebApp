@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <title>Home</title>
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style_div.css">
-    <script src="script_home.js"></script>
+    <link rel="stylesheet" href="/style_div_20181002.css">
+    <script type="application/javascript" src="/vue.min.js"></script>
+    <script type="application/javascript" src="/jquery-3.3.1.js"></script>
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script type="application/javascript" src="/script_home.js"></script>
 </head>
 <body>
 <div class="layout_main">
@@ -43,9 +45,23 @@
     <div class="layout_center">
         <div class="input_group_div">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Bar Code" id="mail" name="email">
+                <input id="mail" name="email" type="text" class="form-control" placeholder="Bar Code">
                 <div class="input-group-append">
-                    <span class="input-group-text">Query</span>
+                    <button id="query_button" class="input-group-text query_button">Query</button>
+                </div>
+            </div>
+        </div>
+        <div class="product_list_div">
+            <div id="div_result"></div>
+            <div class="product_box">
+                <div class="product_picture_box">
+                    <img src="/img/default.jpeg" class="img_picture">
+                </div>
+                <div class="product_detail_box">
+                    <h5>品名:</h5><br/>
+                    <h5>类别:</h5><br/>
+                    <h5>规格:</h5><br/>
+                    <h3>价格:</h3>
                 </div>
             </div>
         </div>
@@ -53,11 +69,6 @@
 
     </br>
 
-    <div class="layout_center">
-        <div class="product_list_div">
-
-        </div>
-    </div>
     <div class="layout_foot">
 
     </div>
