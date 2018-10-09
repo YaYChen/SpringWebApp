@@ -30,7 +30,7 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/products-ByCategory",method = RequestMethod.GET)
-    public String products(@RequestParam("categroy") String _category){
+    public String products(@RequestParam("category") String _category){
         List<Product> products = productMapper.getProductsByCategory(_category);
         String usersJson = JSON.toJSONString(products);
         return usersJson;

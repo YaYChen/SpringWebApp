@@ -14,7 +14,7 @@ public class Product {
     @NotNull
     private String specification;
     @NotNull
-    private byte[] productPicture;
+    private String productPicture;
     @NotNull
     private double purchasePrice;
     @NotNull
@@ -60,11 +60,11 @@ public class Product {
         this.specification = specification;
     }
 
-    public byte[] getProductPicture() {
+    public String getProductPicture() {
         return productPicture;
     }
 
-    public void setProductPicture(byte[] productPicture) {
+    public void setProductPicture(String productPicture) {
         this.productPicture = productPicture;
     }
 

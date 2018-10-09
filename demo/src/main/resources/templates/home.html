@@ -51,19 +51,11 @@
                 </div>
             </div>
         </div>
-        <div class="product_list_div">
+        <div id="product_container" class="product_list_div">
             <div id="div_result"></div>
-            <div class="product_box">
-                <div class="product_picture_box">
-                    <img src="/img/default.jpeg" class="img_picture">
-                </div>
-                <div class="product_detail_box">
-                    <h5>品名:</h5><br/>
-                    <h5>类别:</h5><br/>
-                    <h5>规格:</h5><br/>
-                    <h3>价格:</h3>
-                </div>
-            </div>
+            <product-component
+                    v-bind:product="product"
+            ></product-component>
         </div>
     </div>
 
