@@ -6,15 +6,12 @@ import com.example.demo.mapper.ProductMapper;
 import com.example.demo.utils.models.ReturnMessage;
 import com.example.demo.utils.models.StatusEnum;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/product")
+@Controller
 public class ProductController {
 
     private ProductMapper productMapper;
@@ -24,12 +21,13 @@ public class ProductController {
         this.productMapper=mapper;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String product_home(){
+    @RequestMapping(value = "/product")
+    public String product(){
         return "product";
     }
 
     @RequestMapping(value = "/products-ByCategory",method = RequestMethod.GET)
+    @ResponseBody
     public String products(@RequestParam("category") String _category){
         List<Product> products = productMapper.getProductsByCategory(_category);
         String usersJson = JSON.toJSONString(products);
@@ -37,6 +35,7 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/product-ByCode",method = RequestMethod.GET)
+    @ResponseBody
     public String product_ByCode(@RequestParam("code") String _code){
         Product product=productMapper.getOne(_code);
         String usersJson = JSON.toJSONString(product);
@@ -44,6 +43,7 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/update-product",method = RequestMethod.POST)
+    @ResponseBody
     public String  update(@RequestParam("product") String _product){
         ReturnMessage returnMessage=new ReturnMessage();
         try{
@@ -61,6 +61,7 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/insert-product",method = RequestMethod.POST)
+    @ResponseBody
     public String insert(@RequestParam("product") String _product){
         ReturnMessage returnMessage=new ReturnMessage();
         try{
@@ -78,6 +79,7 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/delete-product",method = RequestMethod.GET)
+    @ResponseBody
     public String delete(@RequestParam("id") String _id){
         ReturnMessage returnMessage=new ReturnMessage();
         try{

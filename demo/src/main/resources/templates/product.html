@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Product</title>
     <!-- Internet -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <!-- Local -->
-    <link rel="stylesheet" href="/style_home.css">
+    <link rel="stylesheet" href="/style_div_20181002.css">
     <script type="application/javascript" src="/vue.min.js"></script>
     <script type="application/javascript" src="/jquery-3.3.1.js"></script>
-    <script type="application/javascript" src="/script_home.js"></script>
+    <script type="application/javascript" src="/script_product.js"></script>
 </head>
 <body>
 <div class="layout_main">
@@ -24,7 +24,7 @@
             <!-- Links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a id="a_home" class="nav-link" href="/home">Home</a>
+                    <a class="nav-link" href="/home">Home</a>
                 </li>
 
                 <!-- Dropdown -->
@@ -53,9 +53,10 @@
             </div>
         </div>
         <div id="product_container" class="product_list_div">
-            <product-component
+            <div id="div_result"></div>
+            <product-editor-component
                     v-bind:product="product"
-            ></product-component>
+            ></product-editor-component>
         </div>
     </div>
 
@@ -65,6 +66,5 @@
 
     </div>
 </div>
-
 </body>
 </html>
