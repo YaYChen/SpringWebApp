@@ -1,0 +1,38 @@
+<template>
+    <div class="layout_main">
+        <app-header/> 
+        <search-product-component/>
+        <app-footer/>
+    </div>
+</template>
+
+<script>
+import Header from '@/components/Header.vue'
+import Footer from '@/components/Footer.vue'
+import SearchProduct from '@/components/SearchProduct.vue'
+
+export default {
+    data:function(){
+        return{
+           
+        }
+    },
+    components: {
+        'search-product-component':SearchProduct,
+        'app-header':Header,
+        'app-footer':Footer
+    },
+    methods:{
+        
+    }
+}
+</script>
+
+<style>
+
+.layout_main{
+    width: 100%;
+    margin: 0 auto;
+    height: 100%;
+}
+</style>
