@@ -13,7 +13,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .layout_foot{
-    height: 12.5%;
+    height: 100px;
     width: 100%;
     background-color: cornflowerblue;
 }

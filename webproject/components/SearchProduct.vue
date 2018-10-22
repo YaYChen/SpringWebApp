@@ -55,7 +55,8 @@ export default {
 <style scoped>
 .layout_center{
     width:100%;
-    height: 100%;
+    min-height: 800px;
+    margin:10px auto;
 }
 
 .input_group_div{

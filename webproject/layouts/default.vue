@@ -10,7 +10,7 @@
     margin: 0;
 }
 body,html{
-   height: 100%;
+   height: auto;
 }
 
 </style>

@@ -32,7 +32,6 @@ export default {
 
 .layout_main{
     width: 100%;
-    margin: 0 auto;
-    height: 100%;
+    height: auto;
 }
 </style>

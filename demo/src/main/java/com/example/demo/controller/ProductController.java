@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin//跨域注解
 public class ProductController {
 
     private ProductMapper productMapper;
@@ -34,8 +35,6 @@ public class ProductController {
         return usersJson;
     }
 
-
-    @CrossOrigin//跨域注解
     @RequestMapping(value = "/product-ByCode",method = RequestMethod.GET)
     @ResponseBody
     public String product_ByCode(@RequestParam("code") String _code){

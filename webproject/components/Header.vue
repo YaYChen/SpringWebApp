@@ -7,7 +7,10 @@
             <!-- Links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a id="a_home" class="nav-link" href="/home">Home</a>
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="/Product">Product</a>
                 </li>
 
                 <!-- Dropdown -->
@@ -16,8 +19,8 @@
                         Management
                     </a>
                     <div class="dropdown-menu">
-                        <a id="a_product" class="dropdown-item" href="#">Product</a>
-                        <a id="a_storage" class="dropdown-item" href="#">Storage</a>
+                        <a class="dropdown-item" href="/Product">Product</a>
+                        <a class="dropdown-item" href="#">Storage</a>
                     </div>
                 </li>
             </ul>
@@ -26,20 +29,23 @@
 </template>
 
 <script>
+
 export default {
   name: 'Header',
-  data () {
-    return {
+    data () {
+        return {
+        }
+    },
+    methods: {
       
     }
-  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .layout_header{
-    height: 12.5%;
+    height: auto;
     width: 100%;
 }
 </style>
