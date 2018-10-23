@@ -37,7 +37,7 @@
     import uploaderComponent from '@/components/el-uploader.vue'
     export default {
         name: 'ProductEditer',
-        props:['product'],
+        props:['code','update'],
         data:function() {
             return {
                 
@@ -48,7 +48,28 @@
         },
         methods:{
             submit:function(){
-
+                var vm=this;
+                let postData = this.$qs.stringify({
+                    product:{
+                        code:this.code,
+                        name:this.$refs.input_name.value,
+                        category:this.$refs.input_category.value,
+                        specification:this.$refs.input_specification.value,
+                        purchasePrice:this.$refs.input_purchasePrice.value,
+                        price:this.$refs.input_price.value,
+                        productPicture:this.$refs.imgUpload.filename
+                    }
+                });
+                if(this.update==true){
+                    this.$axios({
+                        method: 'post',
+                        url:'http://localhost:8080/update-product',
+                        data:postData
+                    }).then((res)=>{
+                        
+                    });
+                }
+                
             },
             cancel:function(){
 
