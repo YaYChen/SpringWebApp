@@ -55,6 +55,6 @@ public interface ProductMapper {
     void update(Product product);
 
     @Delete("delete form product_table where id =#{id}")
-    void delete(Integer id);
+    void delete(long id);
 
 }

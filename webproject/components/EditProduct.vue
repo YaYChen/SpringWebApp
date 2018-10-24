@@ -2,7 +2,7 @@
    <div class="layout_center">
        <div class="input_group_div">
             <div class="input-group mb-3">
-                <input id="input_search" type="text" class="form-control" placeholder="Bar Code"  @keyup.enter="inputListener">
+                <input ref="input_search" type="text" class="form-control" placeholder="Bar Code"  @keyup.enter="inputListener">
                 <div class="input-group-append">
                     <span id="query_button" class="input-group-text query_button">Query</span>
                 </div>
@@ -12,8 +12,9 @@
             <product-editer-component
                     ref="product_view"
                     v-if="showProduct"
-                    v-bind:code="code"
+                    v-bind:product="product"
                     v-bind:update="update"
+                    @disableEditer="disableEditer"
             ></product-editer-component>
         </div>
    </div>
@@ -26,8 +27,8 @@ export default {
     name:"EditProduct",
     data: function(){
         return{
-            showProduct:true,
-            code:'',
+            showProduct:false,
+            product:'',
             update:false
         }      
     },
@@ -37,20 +38,19 @@ export default {
     methods:{
         inputListener:function(){
             var vm=this;
-            code=this.$refs.input_search.value;
+            vm.showProduct=true;
+            vm.code=this.$refs.input_search.value;
             this.$axios.get("http://localhost:8080/product-ByCode",{
                 params: {
                     code:this.$refs.input_search.value
                     }
                 })
                 .then(function(response){
-                    if(!response.data.length){ // "",[]
-                        update=false;
-                        vm.showProduct=true;
+                    if(response.data==""){ // "",[]
+                        vm.update=false;
                         alert("The product is not exit,please add...");
                     }else{
-                        update=true;
-                        vm.showProduct=true;
+                        vm.update=true;
                         vm.product=response.data;
                     }
                     
@@ -58,6 +58,10 @@ export default {
                 .catch(function(error){
                     console.log(error);
                 });
+        },
+        disableEditer:function(){
+            var vm=this;
+            vm.showProduct=false;
         }
     }
 }
