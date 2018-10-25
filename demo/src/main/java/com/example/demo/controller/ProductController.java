@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.Product;
 import com.example.demo.mapper.ProductMapper;
+import com.example.demo.utils.models.SystemInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,16 +40,20 @@ public class ProductController {
         return ResponseEntity.ok(productMapper.getOne(code));
     }
 
-    @PutMapping(value = "/update-product")
+    @PostMapping(value = "/update-product")
     @ResponseBody
     public ResponseEntity<Map<String,Object>> update(@RequestBody Product product){
         Map<String,Object> map = new HashMap<String,Object>();
         try{
+            if(product.getProductPicture().indexOf(SystemInfo.imgFilePath)==-1){
+                product.setProductPicture(SystemInfo.imgFilePath+product.getProductPicture());
+            }
             productMapper.update(product);
             map.put("message", "");
             return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
         }catch (Exception e){
             map.put("message", e.getMessage());
+            System.out.println(e.getMessage());
             return new ResponseEntity<Map<String,Object>>(map, HttpStatus.NOT_MODIFIED);
         }
     }
@@ -58,11 +63,13 @@ public class ProductController {
     public ResponseEntity<Map<String,Object>> insert(@RequestBody Product product){
         Map<String,Object> map = new HashMap<String,Object>();
         try{
+            product.setProductPicture(SystemInfo.imgFilePath+product.getProductPicture());
             productMapper.insert(product);
             map.put("message", "");
             return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
         }catch (Exception e){
             map.put("message", e.getMessage());
+            System.out.println(e.getMessage());
             return new ResponseEntity<Map<String,Object>>(map, HttpStatus.NOT_MODIFIED);
         }
     }

@@ -14,6 +14,8 @@
                     v-if="showProduct"
                     v-bind:product="product"
                     v-bind:update="update"
+                    v-bind:code="code"
+                    v-bind:id="id"
                     @disableEditer="disableEditer"
             ></product-editer-component>
         </div>
@@ -29,6 +31,8 @@ export default {
         return{
             showProduct:false,
             product:'',
+            code:'',
+            id:'',
             update:false
         }      
     },
@@ -52,6 +56,7 @@ export default {
                     }else{
                         vm.update=true;
                         vm.product=response.data;
+                        vm.id=vm.product.id;
                     }
                     
                 })

@@ -16,9 +16,9 @@ public class Product {
     @NotNull
     private String productPicture;
     @NotNull
-    private double purchasePrice;
+    private String purchasePrice;
     @NotNull
-    private double price;
+    private String price;
 
     public long getId() {
         return id;
@@ -68,19 +68,19 @@ public class Product {
         this.productPicture = productPicture;
     }
 
-    public double getPurchasePrice() {
+    public String getPurchasePrice() {
         return purchasePrice;
     }
 
-    public void setPurchasePrice(double purchasePrice) {
+    public void setPurchasePrice(String purchasePrice) {
         this.purchasePrice = purchasePrice;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

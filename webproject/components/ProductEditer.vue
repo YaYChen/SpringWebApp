@@ -37,7 +37,7 @@
     import uploaderComponent from '@/components/el-uploader.vue'
     export default {
         name: 'ProductEditer',
-        props:['product','update'],
+        props:['product','code','id','update'],
         data:function() {
             return {
                 
@@ -49,33 +49,29 @@
         methods:{
             submit:function(){
                 var vm=this;
-                let postData = this.$qs.stringify({
-                    product:{
-                        code:this.code,
-                        name:this.$refs.input_name.value,
-                        category:this.$refs.input_category.value,
-                        specification:this.$refs.input_specification.value,
-                        purchasePrice:this.$refs.input_purchasePrice.value,
-                        price:this.$refs.input_price.value,
-                        productPicture:this.$refs.imgUpload.filename
-                    }
-                });
                 if(this.update==true){
-                    this.$axios({
-                        method: 'put',
-                        url:'http://localhost:8080/update-product',
-                        data:postData
-                    }).then((response)=>{
+                    var postData=JSON.stringify(vm.product);
+                    this.$axios.post('http://localhost:8080/update-product',postData)
+                    .then((response)=>{
                         console.log(response);
                     }).catch(function(error){
                         alert(error);
                     });
                 }else{
-                    this.$axios({
-                        method: 'post',
-                        url:'http://localhost:8080/insert-product',
-                        data:postData
-                    }).then((response)=>{
+                    var postData=JSON.stringify({
+                        product:{
+                            id:0,
+                            code:vm.code,
+                            name:vm.$refs.input_name.value,
+                            category:vm.$refs.input_category.value,
+                            specification:vm.$refs.input_specification.value,
+                            purchasePrice:vm.$refs.input_purchasePrice.value,
+                            price:vm.$refs.input_price.value,
+                            productPicture:vm.$refs.imgUpload.filename
+                        }
+                    });
+                    this.$axios.post('http://localhost:8080/insert-product',postData)
+                    .then((response)=>{
                         console.log(response);
                     }).catch(function(error){
                         alert(error);
