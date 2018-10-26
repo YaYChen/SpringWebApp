@@ -2,6 +2,7 @@ package com.example.demo.mapper;
 
 import com.example.demo.entity.Product;
 import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.mapping.FetchType;
 
 import java.util.List;
 
@@ -12,7 +13,8 @@ public interface ProductMapper {
             @Result(property = "id",column = "id"),
             @Result(property = "code",column = "code"),
             @Result(property = "name",column = "name"),
-            @Result(property = "category",column= "category"),
+            @Result(property = "category",column= "category_id",
+                    one=@One(select = "com.example.demo.mapper.CategoryMapper.getCategory",fetchType = FetchType.LAZY)),
             @Result(property = "specification",column = "specification"),
             @Result(property = "productPicture",column = "productPicture"),
             @Result(property = "purchasePrice",column = "purchasePrice"),
@@ -20,12 +22,13 @@ public interface ProductMapper {
     })
     Product getOne(String code);
 
-    @Select("select * from product_table where category = #{category}")
+    @Select("select * from product_table where category_id = #{category_id}")
     @Results({
             @Result(property = "id",column = "id"),
             @Result(property = "code",column = "code"),
             @Result(property = "name",column = "name"),
-            @Result(property = "category",column= "category"),
+            @Result(property = "category",column= "category_id",
+                    one=@One(select = "com.example.demo.mapper.CategoryMapper.getCategory",fetchType = FetchType.LAZY)),
             @Result(property = "specification",column = "specification"),
             @Result(property = "productPicture",column = "productPicture"),
             @Result(property = "purchasePrice",column = "purchasePrice"),
@@ -33,10 +36,10 @@ public interface ProductMapper {
     })
     List<Product> getProductsByCategory(String category);
 
-    @Insert("insert info product_table(code,name,category,specification,productPicture,purchasePrice,price)" +
+    @Insert("insert info product_table(code,name,category_id,specification,productPicture,purchasePrice,price)" +
             " values(#{code}," +
             " #{name}," +
-            " #{category}," +
+            " #{category_id}," +
             " #{specification}," +
             " #{productPicture}," +
             " #{purchasePrice}," +
@@ -50,7 +53,7 @@ public interface ProductMapper {
                     "productPicture=#{productPicture}," +
                     "purchasePrice=#{purchasePrice}," +
                     "price=#{price}," +
-                    "category=#{category}" +
+                    "category_id=#{category_id}" +
                     " WHERE id =#{id}")
     void update(Product product);
 

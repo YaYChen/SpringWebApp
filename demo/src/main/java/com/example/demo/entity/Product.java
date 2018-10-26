@@ -4,13 +4,14 @@ import javax.validation.constraints.NotNull;
 
 public class Product {
 
+    @NotNull
     private long id;
     @NotNull
     private String code;
     @NotNull
     private String name;
     @NotNull
-    private String category;
+    private Category category;
     @NotNull
     private String specification;
     @NotNull
@@ -44,11 +45,11 @@ public class Product {
         this.name = name;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
