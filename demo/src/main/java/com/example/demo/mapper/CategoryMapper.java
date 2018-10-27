@@ -12,18 +12,18 @@ public interface CategoryMapper {
             @Result(property = "id",column = "id"),
             @Result(property = "name",  column = "name"),
     })
-    List<Category> selectAll();
+    List<Category> getAll();
 
     @Select("select * from category_table where id = #{id} ")
     Category getCategory(int id);
 
     @Insert("insert info category_table(name)" +
-            " values(#{name})")
+            " values(#{category.name})")
     void insert(Category category);
 
     @Update("update category_table set " +
-            "name=#{name}," +
-            " WHERE id =#{id}")
+            "name=#{category.name}," +
+            " WHERE id =#{category.id}")
     void update(Category category);
 
     @Delete("delete form category_table where id =#{id}")

@@ -34,27 +34,27 @@ public interface ProductMapper {
             @Result(property = "purchasePrice",column = "purchasePrice"),
             @Result(property = "price",column = "purchasePrice")
     })
-    List<Product> getProductsByCategory(String category);
+    List<Product> getProductsByCategory(int category_id);
 
     @Insert("insert info product_table(code,name,category_id,specification,productPicture,purchasePrice,price)" +
-            " values(#{code}," +
-            " #{name}," +
-            " #{category_id}," +
-            " #{specification}," +
-            " #{productPicture}," +
-            " #{purchasePrice}," +
-            " #{price})")
+            " values(#{product.code}," +
+            " #{product.name}," +
+            " #{product.category.id}," +
+            " #{product.specification}," +
+            " #{product.productPicture}," +
+            " #{product.purchasePrice}," +
+            " #{product.price})")
     void insert(Product product);
 
     @Update("update product_table set " +
-                    "code=#{code}," +
-                    "name=#{name}," +
-                    "specification=#{specification}," +
-                    "productPicture=#{productPicture}," +
-                    "purchasePrice=#{purchasePrice}," +
-                    "price=#{price}," +
-                    "category_id=#{category_id}" +
-                    " WHERE id =#{id}")
+                    "code=#{product.code}," +
+                    "name=#{product.name}," +
+                    "specification=#{product.specification}," +
+                    "productPicture=#{product.productPicture}," +
+                    "purchasePrice=#{product.purchasePrice}," +
+                    "price=#{product.price}," +
+                    "category_id=#{product.category.id}" +
+                    " WHERE id =#{product.id}")
     void update(Product product);
 
     @Delete("delete form product_table where id =#{id}")

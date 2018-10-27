@@ -30,7 +30,7 @@ public class ProductController {
 
     @GetMapping(value = "/products-ByCategory")
     @ResponseBody
-    public ResponseEntity<List<Product>> products(@RequestParam("category") String category){
+    public ResponseEntity<List<Product>> products(@RequestParam("category") int category){
         return ResponseEntity.ok(productMapper.getProductsByCategory(category));
     }
 

@@ -14,8 +14,6 @@
                     v-if="showProduct"
                     v-bind:product="product"
                     v-bind:update="update"
-                    v-bind:code="code"
-                    v-bind:id="id"
                     @disableEditer="disableEditer"
             ></product-editer-component>
         </div>
@@ -31,8 +29,6 @@ export default {
         return{
             showProduct:false,
             product:'',
-            code:'',
-            id:'',
             update:false
         }      
     },
@@ -43,15 +39,25 @@ export default {
         inputListener:function(){
             var vm=this;
             vm.showProduct=true;
-            vm.code=this.$refs.input_search.value;
+            vm.code=vm.$refs.input_search.value;
             this.$axios.get("http://localhost:8080/product-ByCode",{
                 params: {
-                    code:this.$refs.input_search.value
+                    code:vm.$refs.input_search.value
                     }
                 })
                 .then(function(response){
                     if(response.data==""){ // "",[]
                         vm.update=false;
+                        vm.product={
+                            "id":'',
+                            "code":vm.$refs.input_search.value,
+                            "name":'',
+                            "category":{"id":1,"name":"烟草"},
+                            "specification":'',
+                            "productPicture":'',
+                            "purchasePrice":'',
+                            "price":''
+                        }
                         alert("The product is not exit,please add...");
                     }else{
                         vm.update=true;

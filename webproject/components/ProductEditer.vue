@@ -12,7 +12,15 @@
             </div>
             <div class="form-group">
                 <label>Category:</label>
-                <input type="text" class="form-control" id="input_category" placeholder="Enter Category" v-model="product.category">
+                <el-select class="form_select" v-model="product.category.id" placeholder="Category select..." >
+                    <el-option
+                        v-for="item in selectCategories"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.id"
+                    >
+                    </el-option>
+                </el-select>
             </div>
             <div class="form-group">
                 <label>Specification:</label>
@@ -37,10 +45,10 @@
     import uploaderComponent from '@/components/el-uploader.vue'
     export default {
         name: 'ProductEditer',
-        props:['product','code','id','update'],
+        props:['product','update'],
         data:function() {
             return {
-                
+                selectCategories:[]
             }
         },
         components:{
@@ -58,18 +66,7 @@
                         alert(error);
                     });
                 }else{
-                    var postData=JSON.stringify({
-                        product:{
-                            id:0,
-                            code:vm.code,
-                            name:vm.$refs.input_name.value,
-                            category:vm.$refs.input_category.value,
-                            specification:vm.$refs.input_specification.value,
-                            purchasePrice:vm.$refs.input_purchasePrice.value,
-                            price:vm.$refs.input_price.value,
-                            productPicture:vm.$refs.imgUpload.filename
-                        }
-                    });
+                    var postData=JSON.stringify(vm.product);
                     this.$axios.post('http://localhost:8080/insert-product',postData)
                     .then((response)=>{
                         console.log(response);
@@ -82,6 +79,15 @@
             cancel:function(){
                 this.$emit('disableEditer');
             }
+        },
+        created:function(){
+            var vm=this;
+            this.$axios.get('http://localhost:8080/getCategories')
+            .then((response)=>{
+                vm.selectCategories=response.data;
+            }).catch(function(error){
+                alert(error);
+            });
         }
     }
 </script>
@@ -102,5 +108,10 @@
 .button_box{
     width: 100%;
     height: auto;
+}
+.form_select{
+    width: 100%;
+    height: auto;
+    float: left;
 }
 </style>
