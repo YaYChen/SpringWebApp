@@ -49,14 +49,14 @@ export default {
                     if(response.data==""){ // "",[]
                         vm.update=false;
                         vm.product={
-                            "id":'',
-                            "code":vm.$refs.input_search.value,
-                            "name":'',
-                            "category":{"id":1,"name":"烟草"},
-                            "specification":'',
-                            "productPicture":'',
-                            "purchasePrice":'',
-                            "price":''
+                            id:0,
+                            code:vm.$refs.input_search.value,
+                            name:'',
+                            category:{id:1,name:"烟草"},
+                            specification:'',
+                            productPicture:'',
+                            purchasePrice:'',
+                            price:''
                         }
                         alert("The product is not exit,please add...");
                     }else{

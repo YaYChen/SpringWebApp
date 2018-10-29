@@ -8,6 +8,7 @@
         multiple
         :limit="1"
         :on-exceed="handleExceed"
+        :on-success="handleAvatarSuccess"
         :file-list="fileList">
         <el-button size="small" type="primary" class="upload_button">Upload Img</el-button>
         <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
@@ -16,7 +17,7 @@
 
 <script>
   export default {
-    props:['filename'],
+    props:['fileName'],
     data() {
       return {
         fileList: []
@@ -24,17 +25,18 @@
     },
     methods: {
       handleRemove(file, fileList) {
-        console.log(file, fileList);
       },
       handlePreview(file) {
-        console.log(file);
-        filename=file.name;
       },
       handleExceed(files, fileList) {
-        this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+        this.$message.warning(`当前限制选择 1 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
       },
       beforeRemove(file, fileList) {
         return this.$confirm(`确定移除 ${ file.name }？`);
+      },
+      handleAvatarSuccess(res, file) {
+        alert('Upload img success!');
+        this.$emit('handleAvatarSuccess', file.name);
       }
     }
   }

@@ -49,7 +49,7 @@ public class ProductController {
                 product.setProductPicture(SystemInfo.imgFilePath+product.getProductPicture());
             }
             productMapper.update(product);
-            map.put("message", "");
+            map.put("message", "Success!");
             return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
         }catch (Exception e){
             map.put("message", e.getMessage());
@@ -65,7 +65,7 @@ public class ProductController {
         try{
             product.setProductPicture(SystemInfo.imgFilePath+product.getProductPicture());
             productMapper.insert(product);
-            map.put("message", "");
+            map.put("message", "Success!");
             return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
         }catch (Exception e){
             map.put("message", e.getMessage());
@@ -80,7 +80,7 @@ public class ProductController {
         Map<String,Object> map = new HashMap<String,Object>();
         try{
             productMapper.delete(id);
-            map.put("message", "");
+            map.put("message", "Success!");
             return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
         }catch (Exception e){
             map.put("message", e.getMessage());

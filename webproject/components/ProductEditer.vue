@@ -2,7 +2,7 @@
     <div class="product_editer_box">
         <div class="img_upload_box">
             <label>Product Picture Upload:</label>
-            <uploaderComponent id="imgUpload" v-bind:fileName="product.productPicture"/>
+            <uploaderComponent id="imgUpload" v-on:handleAvatarSuccess="handleAvatarSuccess"/>
         </div>
         <div class="product_detial_box">
             <form>
@@ -12,7 +12,7 @@
             </div>
             <div class="form-group">
                 <label>Category:</label>
-                <el-select class="form_select" v-model="product.category.id" placeholder="Category select..." >
+                <el-select class="form_select" v-model="selectValue" placeholder="Category select..." @change="selectChange">
                     <el-option
                         v-for="item in selectCategories"
                             :key="item.id"
@@ -48,7 +48,9 @@
         props:['product','update'],
         data:function() {
             return {
-                selectCategories:[]
+                selectCategories:[],
+                selectValue:'',
+                imgFileName:''
             }
         },
         components:{
@@ -56,28 +58,45 @@
         },
         methods:{
             submit:function(){
-                var vm=this;
-                if(this.update==true){
-                    var postData=JSON.stringify(vm.product);
-                    this.$axios.post('http://localhost:8080/update-product',postData)
-                    .then((response)=>{
-                        console.log(response);
-                    }).catch(function(error){
-                        alert(error);
-                    });
-                }else{
-                    var postData=JSON.stringify(vm.product);
-                    this.$axios.post('http://localhost:8080/insert-product',postData)
-                    .then((response)=>{
-                        console.log(response);
-                    }).catch(function(error){
-                        alert(error);
-                    }); 
-                }
-                
+                try{
+                    var vm=this;
+                    if(this.update==true){
+                        if(vm.imgFileName===''){
+                        alert('Please upload img...');
+                        }else{
+                            vm.product.productPicture=vm.imgFileName;
+                        }
+                        var postData=JSON.stringify(vm.product);
+                        this.$axios.post('http://localhost:8080/update-product',postData)
+                        .then((response)=>{
+                            alert(response.content.message);
+                        }).catch(function(error){
+                            alert(error);
+                        });
+                    }else{
+                        if(vm.imgFileName!==''){
+                            vm.product.productPicture=vm.imgFileName;
+                        }
+                        var postData=JSON.stringify(vm.product);
+                        this.$axios.post('http://localhost:8080/insert-product',postData)
+                        .then((response)=>{
+                            alert(response.content.message);
+                        }).catch(function(error){
+                            alert(error);
+                        }); 
+                    }
+                }catch(error){
+                    alert(error.message);
+                }       
             },
             cancel:function(){
                 this.$emit('disableEditer');
+            },
+            selectChange:function(){
+                this.product.category.id=this.selectValue;
+            },
+            handleAvatarSuccess:function(fileName){
+                this.imgFileName=fileName;               
             }
         },
         created:function(){
@@ -85,6 +104,9 @@
             this.$axios.get('http://localhost:8080/getCategories')
             .then((response)=>{
                 vm.selectCategories=response.data;
+                if(vm.product.category.id!==''||vm.product.category.id!==undefined){
+                    vm.selectValue=vm.product.category.id;
+                }
             }).catch(function(error){
                 alert(error);
             });
