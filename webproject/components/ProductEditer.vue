@@ -67,9 +67,13 @@
                             vm.product.productPicture=vm.imgFileName;
                         }
                         var postData=JSON.stringify(vm.product);
-                        this.$axios.post('http://localhost:8080/update-product',postData)
+                        this.$axios.post('http://localhost:8080/update-product',postData,{
+                            headers: {
+                                'Content-Type': 'application/json;charset=UTF-8'
+                            }
+                        })
                         .then((response)=>{
-                            alert(response.content.message);
+                            alert(response.data.message);
                         }).catch(function(error){
                             alert(error);
                         });
@@ -78,9 +82,13 @@
                             vm.product.productPicture=vm.imgFileName;
                         }
                         var postData=JSON.stringify(vm.product);
-                        this.$axios.post('http://localhost:8080/insert-product',postData)
+                        this.$axios.post('http://localhost:8080/insert-product',postData,{
+                            headers: {
+                                'Content-Type': 'application/json;charset=UTF-8'
+                            }
+                        })
                         .then((response)=>{
-                            alert(response.content.message);
+                            alert(response.data.message);
                         }).catch(function(error){
                             alert(error);
                         }); 

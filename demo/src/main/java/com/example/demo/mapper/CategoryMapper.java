@@ -17,7 +17,7 @@ public interface CategoryMapper {
     @Select("select * from category_table where id = #{id} ")
     Category getCategory(int id);
 
-    @Insert("insert info category_table(name)" +
+    @Insert("insert into category_table(name)" +
             " values(#{category.name})")
     void insert(Category category);
 
