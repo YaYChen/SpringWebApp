@@ -1,14 +1,14 @@
 <template>
     <div class="product_box">
         <div class="product_picture_box">
-            <img :src="product.imgPath" class="img_picture">
+            <img :src="product.productPicture" class="img_picture">
         </div>
         <div class="product_detail_box">          
             <div class="product_detail_info">
                 <div class="show_detail_info_title">品名:</div>
                 <div class="show_detail_info_value">{{product.name}}</div>
                 <div class="show_detail_info_title">类别:</div>
-                <div class="show_detail_info_value">{{product.category}}</div>
+                <div class="show_detail_info_value">{{product.category.name}}</div>
                 <div class="show_detail_info_title">规格:</div>
                 <div class="show_detail_info_value">{{product.specification}}</div>
             </div>

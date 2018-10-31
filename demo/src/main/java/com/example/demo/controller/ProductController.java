@@ -29,24 +29,21 @@ public class ProductController {
     }
 
     @GetMapping(value = "/products-ByCategory")
-    @ResponseBody
     public ResponseEntity<List<Product>> products(@RequestParam("category") int category){
         return ResponseEntity.ok(productMapper.getProductsByCategory(category));
     }
 
     @GetMapping(value = "/product-ByCode")
-    @ResponseBody
     public ResponseEntity<Product> product_ByCode(@RequestParam("code") String code){
         return ResponseEntity.ok(productMapper.getOne(code));
     }
 
     @PostMapping(value = "/update-product")
-    @ResponseBody
     public ResponseEntity<Map<String,Object>> update(@RequestBody Product product){
         Map<String,Object> map = new HashMap<String,Object>();
         try{
-            if(product.getProductPicture().indexOf(SystemInfo.imgFilePath)==-1){
-                product.setProductPicture(SystemInfo.imgFilePath+product.getProductPicture());
+            if(product.getProductPicture().indexOf("/imgs/")==-1){
+                product.setProductPicture("/imgs/"+product.getProductPicture());
             }
             productMapper.update(product);
             map.put("message", "Success!");
@@ -59,11 +56,10 @@ public class ProductController {
     }
 
     @PostMapping(value = "/insert-product")
-    @ResponseBody
     public ResponseEntity<Map<String,Object>> insert(@RequestBody Product product){
         Map<String,Object> map = new HashMap<String,Object>();
         try{
-            product.setProductPicture(SystemInfo.imgFilePath+product.getProductPicture());
+            product.setProductPicture("/imgs/"+product.getProductPicture());
             productMapper.insert(product);
             map.put("message", "Success!");
             return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
@@ -75,7 +71,6 @@ public class ProductController {
     }
 
     @DeleteMapping(value = "/delete-product")
-    @ResponseBody
     public ResponseEntity<Map<String,Object>> delete(@RequestParam("id") long id){
         Map<String,Object> map = new HashMap<String,Object>();
         try{

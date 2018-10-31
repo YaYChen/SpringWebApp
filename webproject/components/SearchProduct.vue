@@ -42,7 +42,7 @@ export default {
                 })
                 .then(function(response){
                     vm.showProduct=true;
-                    vm.product=response.data;
+                    vm.product=response.data;                                
                 })
                 .catch(function(error){
                     console.log(error);

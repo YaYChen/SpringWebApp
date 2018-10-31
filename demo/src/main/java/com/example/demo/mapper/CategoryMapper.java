@@ -18,12 +18,12 @@ public interface CategoryMapper {
     Category getCategory(int id);
 
     @Insert("insert into category_table(name)" +
-            " values(#{category.name})")
+            " values(#{name})")
     void insert(Category category);
 
     @Update("update category_table set " +
-            "name=#{category.name}," +
-            " WHERE id =#{category.id}")
+            "name=#{name}," +
+            " WHERE id =#{id}")
     void update(Category category);
 
     @Delete("delete form category_table where id =#{id}")

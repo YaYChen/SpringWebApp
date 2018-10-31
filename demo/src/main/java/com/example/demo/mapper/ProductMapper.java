@@ -18,7 +18,7 @@ public interface ProductMapper {
             @Result(property = "specification",column = "specification"),
             @Result(property = "productPicture",column = "productPicture"),
             @Result(property = "purchasePrice",column = "purchasePrice"),
-            @Result(property = "price",column = "purchasePrice")
+            @Result(property = "price",column = "price")
     })
     Product getOne(String code);
 
@@ -32,7 +32,7 @@ public interface ProductMapper {
             @Result(property = "specification",column = "specification"),
             @Result(property = "productPicture",column = "productPicture"),
             @Result(property = "purchasePrice",column = "purchasePrice"),
-            @Result(property = "price",column = "purchasePrice")
+            @Result(property = "price",column = "price")
     })
     List<Product> getProductsByCategory(int category_id);
 
@@ -48,13 +48,13 @@ public interface ProductMapper {
 
     @Update("update product_table set " +
                     "code=#{code}," +
-                    "name=#{product.name}," +
+                    "name=#{name}," +
                     "specification=#{specification}," +
                     "productPicture=#{productPicture}," +
                     "purchasePrice=#{purchasePrice}," +
                     "price=#{price}," +
                     "category_id=#{category.id}" +
-                    " WHERE id =#{id}")
+                    " where id =#{id}")
     void update(Product product);
 
     @Delete("delete form product_table where id =#{id}")
