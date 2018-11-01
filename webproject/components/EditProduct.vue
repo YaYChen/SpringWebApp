@@ -74,6 +74,9 @@ export default {
             var vm=this;
             vm.showProduct=false;
         }
+    },
+    created:function(){
+        
     }
 }
 </script>

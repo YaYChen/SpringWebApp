@@ -1,6 +1,6 @@
 <template>
     <div class="layout_main">
-        <app-header/> 
+        <app-header v-bind:activeIndex="activeIndex"/> 
         <search-product-component/>
         <app-footer/>
     </div>
@@ -14,7 +14,7 @@ import SearchProduct from '@/components/SearchProduct.vue'
 export default {
     data:function(){
         return{
-           
+           activeIndex:'1'
         }
     },
     components: {

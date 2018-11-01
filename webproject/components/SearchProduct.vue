@@ -42,12 +42,16 @@ export default {
                 })
                 .then(function(response){
                     vm.showProduct=true;
-                    vm.product=response.data;                                
+                    vm.product=response.data;
+                    vm.$refs.input_search.value="";                                
                 })
                 .catch(function(error){
                     console.log(error);
                 });
         }
+    },
+    created:function(){
+        
     }
 }
 </script>

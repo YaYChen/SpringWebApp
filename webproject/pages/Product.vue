@@ -1,6 +1,6 @@
 <template>
     <div class="layout_main">
-        <app-header/> 
+        <app-header v-bind:activeIndex="activeIndex"/> 
         <edit-product/>
         <app-footer/>
     </div>
@@ -14,7 +14,7 @@ import EditProduct from '@/components/EditProduct.vue'
 export default {
     data:function(){
         return{
-           
+           activeIndex:'3-1'
         }
     },
     components: {

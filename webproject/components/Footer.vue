@@ -15,6 +15,6 @@ export default {
 .layout_foot{
     height: 100px;
     width: 100%;
-    background-color: cornflowerblue;
+    background-color: black;
 }
 </style>
