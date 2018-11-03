@@ -84,6 +84,7 @@ export default {
     height: 100%;
 }
 .nav_menu_item{
+    height: 100%;
     font-family: "Microsoft YaHei";
     font-size: 20px;
 }
